@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "commonJS",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "jsx": "react",
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
