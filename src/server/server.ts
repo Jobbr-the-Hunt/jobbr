@@ -2,6 +2,7 @@ const express = require('express');
 import { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import signupRouter from './routes/signupRouter';
 import loginRouter from './routes/loginRouter';
@@ -21,6 +22,7 @@ mongoose.connect(MONGO_URI)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(cookieParser());
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);

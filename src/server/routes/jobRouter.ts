@@ -5,7 +5,9 @@ const router = Router();
 
 router.get('/');
 
-router.post('/');
+router.post('/', jobController.addJob, (req: Request, res: Response) => {
+  return res.status(201).json(res.locals.job);
+});
 
 router.patch('/');
 
