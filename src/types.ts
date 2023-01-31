@@ -12,6 +12,7 @@ export type Listing = {
   progress: string;
   url: string;
   summary: string;
+  date: Date;
 };
 
 export interface SignupController {

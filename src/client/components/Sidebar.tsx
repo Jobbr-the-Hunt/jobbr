@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Listing } from '../../types';
+import axios from 'axios';
 
 type SidebarProps = {
   setListings: React.Dispatch<React.SetStateAction<Listing>>;
@@ -11,11 +12,20 @@ const Sidebar = ({ setListings }: SidebarProps) => {
   const [progress, setProgress] = useState('Applied');
   const [url, setUrl] = useState('');
   const [summary, setSummary] = useState('');
+  const [date, setDate] = useState(new Date('2023/01/31' + 'Z'));
   console.log('jobTitle state: ', jobTitle);
   console.log('company state: ', company);
   console.log('progress state: ', progress);
   console.log('url state: ', url);
   console.log('summary state: ', summary);
+  console.log('date: ', date);
+
+  // title: { type: String, required: true },
+  // company: { type: String, required: true },
+  // dateApplied: { type: Date, required: true },
+  // status: { type: String, required: true },
+  // url: { type: String, required: true },
+  // summary: { type: String },
 
   const makeListing = (e: any) => {
     e.preventDefault();
@@ -25,9 +35,18 @@ const Sidebar = ({ setListings }: SidebarProps) => {
       progress: progress,
       url: url,
       summary: summary,
+      date: date,
     };
     console.log('logging obj on button push:', obj);
     setListings(obj);
+    // axios.post('/job', {
+    //   title: jobTitle,
+    //   company: company,
+    //   dateApplied: date,
+    //   status: progress,
+    //   url: url,
+    //   summary: summary,
+    // });
   };
 
   return (
@@ -46,7 +65,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
             className="input"
             onChange={(e) => setCompany(e.target.value)}
           ></input>
-          <label>Progress</label>
+          <label>Progress:</label>
           <select
             className="dropdown"
             onChange={(e) => setProgress(e.target.value)}
@@ -56,15 +75,24 @@ const Sidebar = ({ setListings }: SidebarProps) => {
             <option>Currently Interviewing</option>
             <option>Stop Tracking</option>
           </select>
-          <label>URL</label>
+          <label>URL:</label>
           <input
             className="input"
             onChange={(e) => setUrl(e.target.value)}
           ></input>
-          <label>Summary</label>
+          <label>Summary:</label>
           <input
             className="input"
             onChange={(e) => setSummary(e.target.value)}
+          ></input>
+          <label>Application Date:</label>
+          <input
+            className="datePicker"
+            type="date"
+            // value="2023-01-31"
+            min="2022/01/01"
+            max="2024/01/01"
+            onChange={(e) => setDate(new Date(e.target.value + 'Z'))}
           ></input>
           <button onClick={makeListing}>+</button>
         </div>
