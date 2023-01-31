@@ -38,7 +38,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
       date: date,
     };
     console.log('logging obj on button push:', obj);
-    setListings(obj);
+
     // axios.post('/job', {
     //   title: jobTitle,
     //   company: company,
@@ -47,6 +47,9 @@ const Sidebar = ({ setListings }: SidebarProps) => {
     //   url: url,
     //   summary: summary,
     // });
+
+    // add the id to the obj that im setting in state (could use promise chaining)
+    setListings(obj);
   };
 
   return (
@@ -92,7 +95,15 @@ const Sidebar = ({ setListings }: SidebarProps) => {
             // value="2023-01-31"
             min="2022/01/01"
             max="2024/01/01"
-            onChange={(e) => setDate(new Date(e.target.value + 'Z'))}
+            onChange={(e) => {
+              let date = new Date(e.target.value);
+              date = new Date(
+                date.getUTCFullYear(),
+                date.getUTCMonth(),
+                date.getUTCDate()
+              );
+              setDate(date);
+            }}
           ></input>
           <button onClick={makeListing}>+</button>
         </div>

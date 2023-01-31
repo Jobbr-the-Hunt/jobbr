@@ -13,6 +13,7 @@ export type Listing = {
   url: string;
   summary: string;
   date: Date;
+  // id: string;
 };
 
 export interface UserController {
