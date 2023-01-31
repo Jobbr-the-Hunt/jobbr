@@ -1,9 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
-import { LoginController, ServerError } from '../../types';
+import { UserController, ServerError } from '../../types';
 import User from '../models/userModel';
 import bcrypt from 'bcryptjs';
 
-const loginController: LoginController = {
+const userController: UserController = {
+  // Creates user on Sign Up
+  createUser: (req: Request, res: Response, next: NextFunction): void => {
+    const { username, password, name } = req.body;
+    User.create({ username, password, name })
+      .then((user) => {
+        res.locals.user = user;
+        return next();
+      })
+      .catch((err) => {
+        return next(err);
+      });
+  },
+  // Verifies user on Log In
   verifyUser: (req: Request, res: Response, next: NextFunction): void => {
     const { username, password } = req.body;
     User.findOne({ username })
@@ -30,7 +43,7 @@ const loginController: LoginController = {
       .catch(err => {
         return next(err);
       });
-  }
+  },
 };
 
-export default loginController;
+export default userController;

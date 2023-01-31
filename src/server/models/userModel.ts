@@ -8,7 +8,7 @@ const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  job: [{ id: { type: Schema.Types.ObjectId, ref: 'job' } }]
+  // job: [{ id: { type: Schema.Types.ObjectId, ref: 'job' } }]
 });
 
 userSchema.pre('save', function (next) {

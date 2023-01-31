@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
-import signupController from '../controllers/signupController';
+import userController from '../controllers/userController';
 
 const router = Router();
 
-router.post('/', signupController.createUser, (req: Request, res: Response) => {
+router.post('/', userController.createUser, (req: Request, res: Response) => {
   return res.status(201).json(res.locals.user);
 });
 
