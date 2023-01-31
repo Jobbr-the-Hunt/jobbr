@@ -1,15 +1,42 @@
 const express = require('express');
 import { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+
+import signupRouter from './routes/signupRouter';
+import loginRouter from './routes/loginRouter';
+import logoutRouter from './routes/logoutRouter';
+import jobRouter from './routes/jobRouter';
+
+import { ServerError } from '../types';
 
 const app = express();
 
-app.use(express.json());
+const MONGO_URI = 'mongodb+srv://codesmith:Codesmith123@cluster0.mg4yveh.mongodb.net/?retryWrites=true&w=majority';
 
-type ServerError = {
-  log: string,
-  status: number,
-  message: { [k: string]: string; },
-};
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch(err => console.log(err));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/job', jobRouter);
+
+// signup endpoint
+// post
+// login endpoint
+// get
+// logout endpoint
+// get
+// job endpoint
+// get, post, patch, delete
+
+
 
 app.use('/', (err: ServerError, req: Request, res: Response, next: NextFunction) => {
   const defaultErr: ServerError = {
