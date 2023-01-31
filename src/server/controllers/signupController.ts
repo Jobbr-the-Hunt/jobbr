@@ -4,6 +4,7 @@ import User from '../models/userModel';
 
 const signupController: SignupController = {
   createUser: (req: Request, res: Response, next: NextFunction): void => {
+    console.log('REQ.BODY', req.body);
     const { username, password, name } = req.body;
     User.create({ username, password, name })
       .then((user) => {
@@ -13,7 +14,7 @@ const signupController: SignupController = {
       .catch((err) => {
         return next(err);
       });
-  }
+  },
 };
 
 export default signupController;
