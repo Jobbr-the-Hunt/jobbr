@@ -6,12 +6,19 @@ export type ServerError = {
   message: { [k: string]: string; },
 };
 
-export interface SignupController {
+export interface UserController {
   createUser: (req: Request, res: Response, next: NextFunction) => void,
-};
-export interface LoginController {
   verifyUser: (req: Request, res: Response, next: NextFunction) => void,
 };
-export interface LogoutController { };
-export interface JobController { };
 
+export interface JobController {
+  addJob: (req: Request, res: Response, next: NextFunction) => void,
+  getJobs: (req: Request, res: Response, next: NextFunction) => void,
+  updateJob: (req: Request, res: Response, next: NextFunction) => void,
+  deleteJob: (req: Request, res: Response, next: NextFunction) => void,
+};
+
+
+export interface CookieController {
+  setSSIDCookie: (req: Request, res: Response, next: NextFunction) => void,
+};
