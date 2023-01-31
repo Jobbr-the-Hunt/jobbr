@@ -2,17 +2,19 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { render } from 'react-dom';
 
-import Navbar from './container/Navbar';
+import Mainbar from './container/Mainbar';
 import MainContent from './container/MainContent';
-import Login from './container/Login';
+import LoginPage from './container/LoginPage';
+import Signup from './components/Signup';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<MainContent />} />
-          <Route path="Login" element={<Login />} />
+        <Route path="/" element={<Mainbar />}>
+          <Route index element={<LoginPage />} />
+          <Route path="Signup" element={<Signup />} />
+          <Route path="Home" element={<MainContent />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -23,6 +23,9 @@ export interface UserController {
 
 export interface JobController {
   addJob: (req: Request, res: Response, next: NextFunction) => void;
+  getJobs: (req: Request, res: Response, next: NextFunction) => void;
+  updateJob: (req: Request, res: Response, next: NextFunction) => void;
+  deleteJob: (req: Request, res: Response, next: NextFunction) => void;
 }
 
 export interface CookieController {
