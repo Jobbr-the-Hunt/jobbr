@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function JobTiles() {
+function JobTiles({ jobTitle, company, progress, url, summary }: any) {
   return (
-    <div>
-      <h1>Job Tiles</h1>
-    </div>
+    <tr>
+      <td>{jobTitle}</td>
+      <td>{company}</td>
+      <td>{progress}</td>
+      <td>{url}</td>
+      <td>{summary}</td>
+    </tr>
   );
 }
 

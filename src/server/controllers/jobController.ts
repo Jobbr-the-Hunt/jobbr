@@ -25,8 +25,11 @@ const jobController: JobController = {
   },
   getJobs: (req: Request, res: Response, next: NextFunction): void => {
     const user_id = req.cookies.ssid;
+    console.log('USER_ID: ', user_id);
+    console.log('COOKIE: ', req.cookies);
     Job.find({ user_id })
       .then((jobs) => {
+        console.log('INSIDE GET JOBS MIDDLEWARE:', jobs);
         res.locals.jobs = jobs;
         return next();
       })
