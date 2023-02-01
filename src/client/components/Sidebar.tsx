@@ -3,22 +3,23 @@ import { Listing } from '../../types';
 import axios from 'axios';
 
 type SidebarProps = {
-  setListings: React.Dispatch<React.SetStateAction<Listing>>;
+  setListings: React.Dispatch<React.SetStateAction<Listing[]>>;
+  listings: Listing[] | [];
 };
 
-const Sidebar = ({ setListings }: SidebarProps) => {
+const Sidebar = ({ setListings, listings }: SidebarProps) => {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [progress, setProgress] = useState('Applied');
   const [url, setUrl] = useState('');
   const [summary, setSummary] = useState('');
-  const [date, setDate] = useState(new Date('2023/01/31' + 'Z'));
+  // const [date, setDate] = useState(new Date('2023/01/31' + 'Z'));
   console.log('jobTitle state: ', jobTitle);
   console.log('company state: ', company);
   console.log('progress state: ', progress);
   console.log('url state: ', url);
   console.log('summary state: ', summary);
-  console.log('date: ', date);
+  // console.log('date: ', date);
 
   // title: { type: String, required: true },
   // company: { type: String, required: true },
@@ -27,7 +28,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
   // url: { type: String, required: true },
   // summary: { type: String },
 
-  const makeListing = (e: any) => {
+  const makeListing = async (e: any) => {
     e.preventDefault();
     const obj = {
       jobTitle: jobTitle,
@@ -35,21 +36,44 @@ const Sidebar = ({ setListings }: SidebarProps) => {
       progress: progress,
       url: url,
       summary: summary,
-      date: date,
+      // date: date,
     };
     console.log('logging obj on button push:', obj);
 
-    // axios.post('/job', {
-    //   title: jobTitle,
-    //   company: company,
-    //   dateApplied: date,
-    //   status: progress,
-    //   url: url,
-    //   summary: summary,
-    // });
+    const response = await axios({
+      url: 'http://localhost:3000/job',
+      method: 'POST',
+      data: {
+        title: jobTitle,
+        company: company,
+        // dateApplied: date,
+        status: progress,
+        url: url,
+        summary: summary,
+      },
+      withCredentials: true,
+    });
 
+    // jobTitle: string;
+    // company: string;
+    // progress: string;
+    // url: string;
+    // summary: string;
+    // date: Date;
+    // id: string;
+
+    console.log('the response: ', response);
+    const responseObj: Listing = {
+      jobTitle: response.data.title,
+      company: response.data.company,
+      progress: response.data.progress,
+      url: response.data.url,
+      summary: response.data.summary,
+      // date: response.data.date,
+      id: response.data.user_id,
+    };
     // add the id to the obj that im setting in state (could use promise chaining)
-    setListings(obj);
+    setListings([...listings, responseObj]);
   };
 
   return (
@@ -88,7 +112,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
             className="input"
             onChange={(e) => setSummary(e.target.value)}
           ></input>
-          <label>Application Date:</label>
+          {/* <label>Application Date:</label>
           <input
             className="datePicker"
             type="date"
@@ -104,7 +128,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
               );
               setDate(date);
             }}
-          ></input>
+          ></input> */}
           <button onClick={makeListing}>+</button>
         </div>
       </form>
