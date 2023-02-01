@@ -4,7 +4,7 @@ import JobTiles from '../components/JobTiles';
 import { Listing } from '../../types';
 
 function MainContent() {
-  const [listings, setListings] = useState<Listing | {}>({});
+  const [listings, setListings] = useState<Listing[] | []>([]);
   console.log('this is the listings: ', listings);
   return (
     <div>

@@ -7,8 +7,13 @@ const jobController: JobController = {
     console.log('req body', req.body);
     const { title, company, status, url } = req.body;
     const summary = req.body.summary ? req.body.summary : '';
-    // const user_id = req.cookies.ssid;
-    const user_id = 'abc1';
+    const user_id = req.cookies.ssid;
+    console.log('title: ', title);
+    console.log('company: ', company);
+    console.log('status: ', status);
+    console.log('url: ', url);
+    console.log('summary:', summary);
+    console.log('user_id: ', req.cookies);
     Job.create({ user_id, title, company, status, url, summary })
       .then((job) => {
         res.locals.job = job;
