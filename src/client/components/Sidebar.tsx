@@ -13,20 +13,6 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
   const [progress, setProgress] = useState('Applied');
   const [url, setUrl] = useState('');
   const [summary, setSummary] = useState('');
-  // const [date, setDate] = useState(new Date('2023/01/31' + 'Z'));
-  console.log('jobTitle state: ', jobTitle);
-  console.log('company state: ', company);
-  console.log('progress state: ', progress);
-  console.log('url state: ', url);
-  console.log('summary state: ', summary);
-  // console.log('date: ', date);
-
-  // title: { type: String, required: true },
-  // company: { type: String, required: true },
-  // dateApplied: { type: Date, required: true },
-  // status: { type: String, required: true },
-  // url: { type: String, required: true },
-  // summary: { type: String },
 
   const makeListing = async (e: any) => {
     e.preventDefault();
@@ -36,7 +22,6 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
       progress: progress,
       url: url,
       summary: summary,
-      // date: date,
     };
     console.log('logging obj on button push:', obj);
 
@@ -46,7 +31,6 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
       data: {
         title: jobTitle,
         company: company,
-        // dateApplied: date,
         status: progress,
         url: url,
         summary: summary,
@@ -54,22 +38,12 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
       withCredentials: true,
     });
 
-    // jobTitle: string;
-    // company: string;
-    // progress: string;
-    // url: string;
-    // summary: string;
-    // date: Date;
-    // id: string;
-
-    console.log('the response: ', response);
     const responseObj: Listing = {
       jobTitle: response.data.title,
       company: response.data.company,
-      progress: response.data.progress,
+      progress: response.data.status,
       url: response.data.url,
       summary: response.data.summary,
-      // date: response.data.date,
       id: response.data.user_id,
     };
     // add the id to the obj that im setting in state (could use promise chaining)
@@ -112,23 +86,6 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
             className="input"
             onChange={(e) => setSummary(e.target.value)}
           ></input>
-          {/* <label>Application Date:</label>
-          <input
-            className="datePicker"
-            type="date"
-            // value="2023-01-31"
-            min="2022/01/01"
-            max="2024/01/01"
-            onChange={(e) => {
-              let date = new Date(e.target.value);
-              date = new Date(
-                date.getUTCFullYear(),
-                date.getUTCMonth(),
-                date.getUTCDate()
-              );
-              setDate(date);
-            }}
-          ></input> */}
           <button onClick={makeListing}>+</button>
         </div>
       </form>
