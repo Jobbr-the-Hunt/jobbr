@@ -44,10 +44,8 @@ function MainContent() {
   }
 
   return (
-    <div>
-      <h1>Main Content</h1>
+    <div className="main-main">
       <Sidebar setListings={setListings} listings={listings} />
-      <h1>Jobs:</h1>
       <table>
         <thead>
           <tr>

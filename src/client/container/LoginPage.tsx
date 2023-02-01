@@ -5,14 +5,10 @@ import Login from '../components/Login';
 
 function LoginPage() {
   return (
-    <div>
+    <div className="login-main">
       <Login />
       <nav>
-        <ul>
-          <li>
-            <Link to="/Signup">Signup</Link>
-          </li>
-        </ul>
+        <Link to="/Signup">Need an account? Sign up!</Link>
       </nav>
       <Outlet />
     </div>

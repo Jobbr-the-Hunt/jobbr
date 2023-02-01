@@ -47,7 +47,7 @@ function Signup() {
   const successMessage = () => {
     return (
       <div className="success" style={{ display: submitted ? '' : 'none' }}>
-        <h1>{name}, you have been successfully registeted!</h1>
+        <p><strong>{name}</strong>, you have been successfully registeted!</p>
       </div>
     );
   };
@@ -55,48 +55,50 @@ function Signup() {
   const errorMessage = () => {
     return (
       <div className="error" style={{ display: error ? '' : 'none' }}>
-        <h1>Please enter all the fields</h1>
+        <strong>Please enter all the fields</strong>
       </div>
     );
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
+    <div className="signup-main">
+      <div className="form-container">
+        <h1>Register</h1>
+        <div className="messages">
+          {errorMessage()}
+          {successMessage()}
+        </div>
+        <form className="signup-form">
+          <label className="label">Username</label>
+          <input
+            required
+            onChange={handleUsername}
+            className="input"
+            value={username}
+            type="text"
+          />
+          <label className="label">Password</label>
+          <input
+            required
+            onChange={handlePassword}
+            className="input"
+            value={password}
+            type="password"
+          />
+          <label className="label">Name</label>
+          <input
+            required
+            onChange={handleName}
+            className="input"
+            value={name}
+            type="text"
+          />
+          <button onClick={handleSubmit} className="submit-btn" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
-      <form>
-        <label className="label">Username</label>
-        <input
-          required
-          onChange={handleUsername}
-          className="input"
-          value={username}
-          type="text"
-        />
-        <label className="label">Password</label>
-        <input
-          required
-          onChange={handlePassword}
-          className="input"
-          value={password}
-          type="password"
-        />
-        <label className="label">Name</label>
-        <input
-          required
-          onChange={handleName}
-          className="input"
-          value={name}
-          type="text"
-        />
-        <button onClick={handleSubmit} className="submit-btn" type="submit">
-          Submit
-        </button>
-        <Link to="/">Back to Login</Link>
-      </form>
+      <Link to="/">Back to Login</Link>
       <Outlet />
     </div>
   );

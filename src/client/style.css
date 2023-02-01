@@ -1,13 +1,30 @@
+html,
+body,
+main,
+.page {
+  margin: 0 0;
+  padding: 0 0;
+  height: 100%;
+}
+
 body {
   background-color: #f4f1de;
 }
 
 .form-container {
   display: flex;
+  flex-direction: column;
   border-radius: 25px;
   border: 1px black;
   justify-content: center;
+  align-items: center;
   background-color: rgb(129, 177, 154, 0.3);
+  padding: 10vh 10vw;
+  margin-bottom: 3vh;
+}
+
+.form-container input {
+  margin: 1vh 0;
 }
 
 .navbar-container {
@@ -20,4 +37,90 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.title {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.title img {
+  padding: 1vh 1vw;
+}
+
+.login-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-container {
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  border: 1px black;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(129, 177, 154, 0.3);
+  padding: 1vh 1vw;
+  margin-right: 10vw;
+}
+
+.sidebar-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-form input,
+.sidebar-form label,
+.sidebar-form select {
+  margin: 1vh 0;
+}
+
+.sidebar-form button {
+  margin: 3vh 0;
+}
+
+.main-main {
+  display: flex;
+  align-items: center;
+}
+
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  width: 10vw;
+  padding: 1vw;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  padding: 1vw;
 }

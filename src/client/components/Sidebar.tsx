@@ -51,43 +51,40 @@ const Sidebar = ({ setListings, listings }: SidebarProps) => {
   };
 
   return (
-    <div>
-      <h2>Sidebar</h2>
-      <form>
-        <label>Add a job!</label>
-        <div>
-          <label>Job Title:</label>
-          <input
-            className="input"
-            onChange={(e) => setJobTitle(e.target.value)}
-          ></input>
-          <label>Company:</label>
-          <input
-            className="input"
-            onChange={(e) => setCompany(e.target.value)}
-          ></input>
-          <label>Progress:</label>
-          <select
-            className="dropdown"
-            onChange={(e) => setProgress(e.target.value)}
-          >
-            <option>Applied</option>
-            <option>Followed Up</option>
-            <option>Currently Interviewing</option>
-            <option>Stop Tracking</option>
-          </select>
-          <label>URL:</label>
-          <input
-            className="input"
-            onChange={(e) => setUrl(e.target.value)}
-          ></input>
-          <label>Summary:</label>
-          <input
-            className="input"
-            onChange={(e) => setSummary(e.target.value)}
-          ></input>
-          <button onClick={makeListing}>+</button>
-        </div>
+    <div className="sidebar-container">
+      <h2>Add a Job:</h2>
+      <form className="sidebar-form">
+        <label>Job Title:</label>
+        <input
+          className="input"
+          onChange={(e) => setJobTitle(e.target.value)}
+        ></input>
+        <label>Company:</label>
+        <input
+          className="input"
+          onChange={(e) => setCompany(e.target.value)}
+        ></input>
+        <label>Progress:</label>
+        <select
+          className="dropdown"
+          onChange={(e) => setProgress(e.target.value)}
+        >
+          <option>Applied</option>
+          <option>Followed Up</option>
+          <option>Currently Interviewing</option>
+          <option>Stop Tracking</option>
+        </select>
+        <label>URL:</label>
+        <input
+          className="input"
+          onChange={(e) => setUrl(e.target.value)}
+        ></input>
+        <label>Summary:</label>
+        <input
+          className="input"
+          onChange={(e) => setSummary(e.target.value)}
+        ></input>
+        <button onClick={makeListing}>+</button>
       </form>
     </div>
   );
