@@ -6,7 +6,6 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
   const handleUsername = (e: any) => {
@@ -26,6 +25,7 @@ function Login() {
           username: username,
           password: password,
         },
+        withCredentials: true,
       });
       navigate('/Home');
     } catch (err) {
@@ -42,7 +42,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h1> Login </h1>
       <div className="messages">{errorMessage()}</div>
       <form>

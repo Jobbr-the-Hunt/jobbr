@@ -1,8 +1,11 @@
 import { Router, Request, Response } from 'express';
-// import logoutController from '../controllers/logoutController';
 
 const router = Router();
 
-router.get('/');
+router.get('/', (req: Request, res: Response) => {
+  res.clearCookie('ssid');
+  console.log('Cookie cleared. Logged out.');
+  return res.sendStatus(200);
+});
 
 export default router;
