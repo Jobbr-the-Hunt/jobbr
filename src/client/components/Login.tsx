@@ -37,8 +37,8 @@ function Login() {
   const errorMessage = () => {
     return (
       <div className="error" style={{ display: error ? '' : 'none' }}>
-        <h1>Invalid credentials, please try again</h1>
-      </div>
+        <p><strong>Invalid credentials, please try again</strong></p>
+      </div >
     );
   };
 
@@ -46,7 +46,7 @@ function Login() {
     <div className="form-container">
       <h1> Login </h1>
       <div className="messages">{errorMessage()}</div>
-      <form>
+      <form className="login-form">
         <label className="label">Username</label>
         <input
           required

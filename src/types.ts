@@ -12,8 +12,8 @@ export type Listing = {
   progress: string;
   url: string;
   summary: string;
-  date: Date;
-  // id: string;
+  // date: Date;
+  id: string;
 };
 
 export interface UserController {

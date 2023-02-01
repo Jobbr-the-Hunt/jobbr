@@ -13,6 +13,7 @@ import jobRouter from './routes/jobRouter';
 import { ServerError } from '../types';
 
 const app = express();
+app.use(cookieParser());
 
 const MONGO_URI =
   'mongodb+srv://codesmith:Codesmith123@cluster0.mg4yveh.mongodb.net/?retryWrites=true&w=majority';
@@ -28,13 +29,11 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
   origin: 'http://localhost:8080',
   credentials: true,
-  optionSuccessStatus: 200
+  optionSuccessStatus: 200,
 };
 app.use(express.static(path.resolve(__dirname, '../../dist')));
 // app.use('/build', express.static(path.resolve(__dirname, '../../dist')));
 app.use(cors(corsOptions));
-
-app.use(cookieParser());
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
