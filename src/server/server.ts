@@ -1,3 +1,4 @@
+import path from 'path';
 const express = require('express');
 import { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -13,11 +14,13 @@ import { ServerError } from '../types';
 
 const app = express();
 
-const MONGO_URI = 'mongodb+srv://codesmith:Codesmith123@cluster0.mg4yveh.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI =
+  'mongodb+srv://codesmith:Codesmith123@cluster0.mg4yveh.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(MONGO_URI)
+mongoose
+  .connect(MONGO_URI)
   .then(() => console.log('Connected to Mongo DB.'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +30,8 @@ const corsOptions = {
   credentials: true,
   optionSuccessStatus: 200
 };
+app.use(express.static(path.resolve(__dirname, '../../dist')));
+// app.use('/build', express.static(path.resolve(__dirname, '../../dist')));
 app.use(cors(corsOptions));
 
 app.use(cookieParser());
@@ -45,17 +50,18 @@ app.use('/job', jobRouter);
 // job endpoint
 // get, post, patch, delete
 
-
-
-app.use('/', (err: ServerError, req: Request, res: Response, next: NextFunction) => {
-  const defaultErr: ServerError = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 400,
-    message: { err: 'An error occurred' },
-  };
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
-});
+app.use(
+  '/',
+  (err: ServerError, req: Request, res: Response, next: NextFunction) => {
+    const defaultErr: ServerError = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 400,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  }
+);
 
 app.listen(3000, () => console.log('server is listening on port 3000'));
