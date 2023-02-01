@@ -19,6 +19,7 @@ const userController: UserController = {
   // Verifies user on Log In
   verifyUser: (req: Request, res: Response, next: NextFunction): void => {
     const { username, password } = req.body;
+    console.log(req.body);
     User.findOne({ username })
       .then((data) => {
         if (!data) {

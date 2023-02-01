@@ -18,8 +18,9 @@ function Login() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
+      console.log(username, password);
       await axios({
-        url: '/login',
+        url: 'http://localhost:3000/login',
         method: 'POST',
         data: {
           username: username,

@@ -10,5 +10,5 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
-# ENTRYPOINT [ "nodemon", "./src/server/server.ts" ]
+# CMD ["npm", "start"]
+ENTRYPOINT [ "nodemon", "./src/server/server.js" ]
