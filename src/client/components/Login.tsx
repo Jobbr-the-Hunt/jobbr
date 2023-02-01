@@ -25,6 +25,7 @@ function Login() {
           username: username,
           password: password,
         },
+        withCredentials: true,
       });
       navigate('/Home');
     } catch (err) {
