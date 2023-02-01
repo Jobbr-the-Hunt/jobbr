@@ -30,7 +30,7 @@ function Signup() {
       setError(true);
     } else {
       const signup = await axios({
-        url: 'http://localhost:3000/signup',
+        url: '/signup',
         method: 'post',
         data: {
           username: username,

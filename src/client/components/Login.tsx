@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     try {
       await axios({
-        url: 'http://localhost:3000/login',
+        url: '/login',
         method: 'POST',
         data: {
           username: username,
