@@ -9,7 +9,7 @@ function MainContent() {
   return (
     <div>
       <h1>Main Content</h1>
-      <Sidebar setListings={setListings} />
+      <Sidebar setListings={setListings} listings={listings} />
       <JobTiles />
     </div>
   );

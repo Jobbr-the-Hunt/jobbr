@@ -3,10 +3,11 @@ import { Listing } from '../../types';
 import axios from 'axios';
 
 type SidebarProps = {
-  setListings: React.Dispatch<React.SetStateAction<Listing>>;
+  setListings: React.Dispatch<React.SetStateAction<Listing[]>>;
+  listings: Listing[] | [];
 };
 
-const Sidebar = ({ setListings }: SidebarProps) => {
+const Sidebar = ({ setListings, listings }: SidebarProps) => {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [progress, setProgress] = useState('Applied');
@@ -62,7 +63,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
     // id: string;
 
     console.log('the response: ', response);
-    const responseObj = {
+    const responseObj: Listing = {
       jobTitle: response.data.title,
       company: response.data.company,
       progress: response.data.progress,
@@ -72,7 +73,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
       id: response.data.user_id,
     };
     // add the id to the obj that im setting in state (could use promise chaining)
-    setListings((oldArray) => [...oldArray, responseObj]);
+    setListings([...listings, responseObj]);
   };
 
   return (
