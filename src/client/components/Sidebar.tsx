@@ -27,7 +27,7 @@ const Sidebar = ({ setListings }: SidebarProps) => {
   // url: { type: String, required: true },
   // summary: { type: String },
 
-  const makeListing = (e: any) => {
+  const makeListing = async (e: any) => {
     e.preventDefault();
     const obj = {
       jobTitle: jobTitle,
@@ -39,15 +39,19 @@ const Sidebar = ({ setListings }: SidebarProps) => {
     };
     console.log('logging obj on button push:', obj);
 
-    // axios.post('/job', {
-    //   title: jobTitle,
-    //   company: company,
-    //   dateApplied: date,
-    //   status: progress,
-    //   url: url,
-    //   summary: summary,
-    // });
-
+    const response = await axios({
+      url: 'http://localhost:3000/job',
+      method: 'post',
+      data: {
+        title: jobTitle,
+        company: company,
+        dateApplied: date,
+        status: progress,
+        url: url,
+        summary: summary,
+      },
+    });
+    console.log(response);
     // add the id to the obj that im setting in state (could use promise chaining)
     setListings(obj);
   };

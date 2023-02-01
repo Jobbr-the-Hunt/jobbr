@@ -4,9 +4,11 @@ import Job from '../models/jobModel';
 
 const jobController: JobController = {
   addJob: (req: Request, res: Response, next: NextFunction): void => {
+    console.log('req body', req.body);
     const { title, company, status, url } = req.body;
     const summary = req.body.summary ? req.body.summary : '';
-    const user_id = req.cookies.ssid;
+    // const user_id = req.cookies.ssid;
+    const user_id = 'abc1';
     Job.create({ user_id, title, company, status, url, summary })
       .then((job) => {
         res.locals.job = job;
@@ -42,11 +44,11 @@ const jobController: JobController = {
   deleteJob: (req: Request, res: Response, next: NextFunction): void => {
     const { id } = req.params;
     Job.findOneAndDelete({ id })
-      .then(job => {
+      .then((job) => {
         res.locals.job = job;
         return next();
       })
-      .catch(err => {
+      .catch((err) => {
         return next(err);
       });
   },
