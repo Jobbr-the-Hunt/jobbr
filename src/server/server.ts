@@ -17,6 +17,7 @@ app.use(cookieParser());
 
 const MONGO_URI =
   'mongodb+srv://codesmith:Codesmith123@cluster0.mg4yveh.mongodb.net/?retryWrites=true&w=majority';
+// 'mongodb+srv://admin:john@cluster0.hb8eyzf.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose
   .connect(MONGO_URI)
