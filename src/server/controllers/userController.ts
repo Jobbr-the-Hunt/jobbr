@@ -2,17 +2,21 @@ import { Request, Response, NextFunction } from 'express';
 import { UserController, ServerError } from '../../types';
 import User from '../models/userModel';
 import bcrypt from 'bcryptjs';
+import axios from 'axios';
 
 const userController: UserController = {
   // Creates user on Sign Up
   createUser: (req: Request, res: Response, next: NextFunction): void => {
+    console.log('entered create user');
     const { username, password, name } = req.body;
+    console.log('logging:', username, password, name);
     User.create({ username, password, name })
       .then((user) => {
         res.locals.user = user;
         return next();
       })
       .catch((err) => {
+        console.log('caught an error!', err);
         return next(err);
       });
   },
@@ -25,22 +29,22 @@ const userController: UserController = {
           console.log('Username not found.');
           return next();
         }
-        bcrypt.compare(password, data.password)
-          .then((result => {
+        bcrypt
+          .compare(password, data.password)
+          .then((result) => {
             if (!result) {
               console.log('Incorrect password');
               return next();
-            }
-            else {
+            } else {
               res.locals.user = data;
               return next();
             }
-          }))
+          })
           .catch((err) => {
             return next(err);
           });
       })
-      .catch(err => {
+      .catch((err) => {
         return next(err);
       });
   },

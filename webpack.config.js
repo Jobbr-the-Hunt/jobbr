@@ -36,8 +36,7 @@ module.exports = {
     },
     proxy: {
       '/api': 'http://localhost:3000',
-      secure: false
-    }
+      secure: false,
+    },
   },
-
 };
